@@ -1,9 +1,12 @@
-import { Button, Navbar } from 'react-bootstrap';
+import { Button, Nav, Navbar } from 'react-bootstrap';
 import light_logo from './light_logo.png';
 import dark_logo from './dark_logo.png';
 import './App.css';
 import Quiz from './containers/Quiz';
 import { useState } from 'react';
+import Folder from './containers/Folder';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 
 function App() {
   const [mode, setMode] = useState("dark")
@@ -20,10 +23,19 @@ function App() {
             alt="React Bootstrap logo"
           />
         </Navbar.Brand>
+        <Nav>
+          <Nav.Link href="/">Quiz</Nav.Link>
+          <Nav.Link href="/directory">Folder</Nav.Link>
+        </Nav>
       </Navbar>
-      <h1 className='welcome marginTop'>Welcome to Quiz App</h1>
-      <Quiz mode={mode} />
-      <Button className='modeButton' variant="dark" onClick={handleMode}>This is {mode.toUpperCase()} mode</Button>
+
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<Quiz />} />
+          <Route path="/directory" element={<Folder />} />
+        </Routes>
+      </BrowserRouter>
+      <Button className='modeButton' variant={mode} onClick={handleMode}>This is {mode.toUpperCase()} mode</Button>
     </div >
   );
 }

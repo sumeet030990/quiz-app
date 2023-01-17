@@ -129,6 +129,8 @@ function Quiz({ mode }) {
 
   return (
     <Container>
+      <h1 className='welcome marginTop'>Welcome to Quiz App</h1>
+
       <Loader isLoading={isLoading}>
         <ErrorContainer errorMessage={error}>
           <div>
